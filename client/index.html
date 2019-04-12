@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- BOOTSRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title" class="mt-6">Sholat Dulu</h1><br><br>
+    <div id="app" class="container">
+        <div class="box" id="up">
+            <form action="" @submit.prevent="getSolatTime">
+                <input type="text" v-model="city" required>
+                <button class="btn btn-success">Cari Jadwal</button>
+            </form><br>
+            <form action="" @submit.prevent="createPDF">
+                <!-- <input type="text" v-model="city"></input> -->
+                <button class="btn btn-success">Download .pdf</button>
+            </form>
+            <button @click="screenshot" class="btn btn-success" style="margin-top: 1rem">Capture</button>
+        </div>
+        
+        <div id="imgLink">
+            <label for url>copy your link here:</label>
+            <input type="text" id="url" v-model="imageUrl" size="40">
+        </div>
+        <!-- facebook twitter share -->
+        <div style="margin: 2em auto; display: flex;
+                justify-content: space-evenly;
+                width: 25%;
+                align-content: center;">
+            <iframe
+                src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&width=99&height=20&appId"
+                width="99" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                allowTransparency="true" allow="encrypted-media"></iframe>
+            <div style="align-self: center;">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                    data-show-count="false">Tweet</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+            <div>
+                <a href="https://api.whatsapp.com/send?phone=&text=urlencodedtext" target="_blank" class="float"><i
+                        class="fa fa-whatsapp my-float"></i></a>
+            </div>
+        </div>
+        
+        <!-- facebook twitter share -->
+        <br>
+        <div class="box" id="canvas">
+            <!-- <div class="row bg-info"> -->
+            <h2>Jadwal Sholat Hari Ini</h2>
+            <textarea id="jadwal-sholat-input" name="" v-model="solatTimes" cols="30" rows="5"></textarea>
+            <!-- </div>  -->
+            <div class="row text-ce">
+            </div>
+        </div>
+        <div id="ss">
+            <div id='subss'>
+
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- SWEET ALERT CDN -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- SCREENSHOT/HTML2CANVAS CDN -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+    <!-- AXIOS CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- VUE CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- JSPDF/PDF CONVERTER CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous">
+    </script>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
