@@ -9,32 +9,58 @@ const storage = new googleStorage.Storage({
 exports.sendUploadToGCS = (req, res, next) => {
   console.log('masusdususu')
  if (!req.file) {
-  return next();
- }
+  next();
+  return
+ } 
  const bucketName = "solatdulu"
  const bucket = storage.bucket(bucketName);
- const gcsFileName = `${Date.now()}-${req.file.originalname}`;
+ console.log(req.file, '------ req.file')
+ const gcsFileName = `${Date.now()}-${req.file.originalName}`;
  const file = bucket.file(gcsFileName);
- const stream = file.createWriteStream({
+
+file.save(req.file.buffer, {
   metadata: {
-   contentType: req.file.mimetype,
-  },
- });
- stream.on('error', (err) => {
-  req.file.cloudStorageError = err;
-  console.log(req.file.cloudStorageError)
-  next(err);
- });
- stream.on('finish', () => {
+    contentType: req.file.mimetype
+  }
+})
+.then(data => {
+  console.log('pusiing')
+  console.log(data)
   req.file.cloudStorageObject = gcsFileName;
   return file.makePublic()
-   .then(() => {
-    req.file.gcsUrl = gcsHelpers.getPublicUrl(bucketName, gcsFileName);
-    next();
-   })
-   .catch(err => {
-     console.log(err.message)
-   })
- });
- stream.end(req.file.buffer);
+})
+.then(() => {
+  console.log('malu aku malu pada semut merah')
+  req.file.gcsUrl = gcsHelpers.getPublicUrl(bucketName, gcsFileName);
+  next();
+ })
+.catch(err => {
+  console.log('lalalayeyeye')
+  console.log(err)
+})
+
+
+//  const stream = file.createWriteStream({
+//   metadata: {
+//    contentType: req.file.mimetype,
+//   },
+//  });
+//  stream.on('error', (err) => {
+//   req.file.cloudStorageError = err;
+//   console.log(req.file.cloudStorageError)
+//   next();
+//  });
+//  stream.on('finish', () => {
+//    console.log(req.file.cloudStorageObject,"========================")
+//   req.file.cloudStorageObject = gcsFileName;
+//   return file.makePublic()
+//    .then(() => {
+//     req.file.gcsUrl = gcsHelpers.getPublicUrl(bucketName, gcsFileName);
+//     next();
+//    })
+//    .catch(err => {
+//      console.log(err.message)
+//    })
+//  });
+//  stream.end(req.file.buffer);
 };

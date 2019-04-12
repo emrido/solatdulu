@@ -1,5 +1,6 @@
   const router = require('express').Router()
   const gcsMiddlewares = require('../middlewares/gCloudStorage')
+  const saveToLocal = require('../middlewares/saveToLocal')
   
   const Multer = require('multer');
   const axios = require('axios');
@@ -11,9 +12,10 @@
     },
   });
 
+
   router.post(
-    '/upload',
-    multer.single('image'),
+    '/upload',saveToLocal,
+    // multer.single('image'),
     gcsMiddlewares.sendUploadToGCS,
     (req, res, next) => {
       console.log(req.file)
