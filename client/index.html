@@ -4,9 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- BOOTSRAP -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="./css/style.css">
   <title>Document</title>
 </head>
 <body>
-  
+  <h1>Hello</h1>
+    <div id="app">
+        <div>
+
+            <form action="" @submit.prevent="createPDF">
+                <!-- <input type="text" v-model="city"></input> -->
+            <button>Get</button>
+        </form>
+        <button @click="screenshot">Get</button>
+        <form action=""  @submit.prevent="getSolatTime">
+            <input type="text" v-model="city" required>
+            <button >Get</button>
+        </form>
+        
+    </div>
+        
+    <div class="container" id="canvas" >
+        <!-- <div class="row bg-info"> -->
+            <h2 >Hei</h2>
+            <textarea name="" v-model="solatTimes" cols="30" rows="5"></textarea>
+            <!-- </div>  -->
+        </div>
+        
+    </div>
+
+    <!-- SWEET ALERT CDN -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- SCREENSHOT/HTML2CANVAS CDN -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+    <!-- AXIOS CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- VUE CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- JSPDF/PDF CONVERTER CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"  crossorigin="anonymous"></script>
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
